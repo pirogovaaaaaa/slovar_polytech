@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentAboutUs);
                 return true;
             case R.id.about_app:
-                // TODO О приложении
+                Intent intentAboutApp = new Intent(this, AboutAppActivity.class);
+                startActivity(intentAboutApp);
                 return true;
             case R.id.add_word:
                 Intent intentAddWord = new Intent(this, AddWordActivity.class);
