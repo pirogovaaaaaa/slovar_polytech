@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,28 +21,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 1, 0, "О нас");
-        menu.add(0, 2, 0, "Что нового");
-        menu.add(0, 3, 0, "О приложении");
-        menu.add(0, 4, 0, "Добавить слово");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
 
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case 1:
+            case R.id.about_us:
                 Intent intentAboutUs = new Intent(this, AboutUsActivity.class);
                 startActivity(intentAboutUs);
                 return true;
-            case 2:
+            case R.id.whats_new:
                 // TODO Что нового
                 return true;
-            case 3:
+            case R.id.about_app:
                 // TODO О приложении
                 return true;
-            case 4:
+            case R.id.add_word:
                 Intent intentAddWord = new Intent(this, AddWordActivity.class);
                 startActivity(intentAddWord);
                 return true;

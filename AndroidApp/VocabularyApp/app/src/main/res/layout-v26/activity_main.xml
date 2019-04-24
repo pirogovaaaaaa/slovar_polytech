@@ -20,7 +20,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/butSearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="Введите слово" />
 
     <Button
         android:id="@+id/butSearch"
