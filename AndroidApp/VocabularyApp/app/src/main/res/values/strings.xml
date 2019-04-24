@@ -31,4 +31,5 @@
     <string name="enterDescription">Введите описание</string>
     <string name="exit">Выход</string>
     <string name="apply">Применить</string>
+    <string name="TeamEnd">Команда студентов первого курса факультета информационных технологий московского политехнического университета</string>
 </resources>
