@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentAboutUs = new Intent(this, AboutUsActivity.class);
                 startActivity(intentAboutUs);
                 return true;
-            case R.id.whats_new:
-                // TODO Что нового
-                return true;
             case R.id.about_app:
                 // TODO О приложении
                 return true;
