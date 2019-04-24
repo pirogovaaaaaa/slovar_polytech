@@ -56,6 +56,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDirection" />
 
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textLink2"
+        app:layout_constraintTop_toBottomOf="@+id/textLink1"
+        tools:layout_editor_absoluteX="-16dp" />
+
     <TextView
         android:id="@+id/textLink2"
         android:layout_width="wrap_content"
@@ -66,6 +75,15 @@
         android:text="@string/way_10_03_01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLink1" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textLink3"
+        app:layout_constraintTop_toBottomOf="@+id/textLink2"
+        tools:layout_editor_absoluteX="-16dp"/>
 
     <TextView
         android:id="@+id/textLink3"
@@ -78,6 +96,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLink2" />
 
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textLink4"
+        app:layout_constraintTop_toBottomOf="@+id/textLink3"
+        tools:layout_editor_absoluteX="-16dp"/>
+
     <TextView
         android:id="@+id/textLink4"
         android:layout_width="wrap_content"
@@ -88,6 +115,15 @@
         android:text="@string/way_09_03_01_02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLink3" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textLink5"
+        app:layout_constraintTop_toBottomOf="@+id/textLink4"
+        tools:layout_editor_absoluteX="-16dp"/>
 
     <TextView
         android:id="@+id/textLink5"
