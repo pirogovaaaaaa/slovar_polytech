@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutAppActivity"></activity>
-        <activity android:name=".AddWordActivity" />
-        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".AddWordActivity"
+            android:label="Add word"/>
+        <activity android:name=".AboutUsActivity"
+            android:label="About us"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
