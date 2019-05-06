@@ -1,6 +1,8 @@
 package com.example.vocabularyapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,8 +37,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentAboutUs);
                 return true;
             case R.id.about_app:
-                Intent intentAboutApp = new Intent(this, AboutAppActivity.class);
-                startActivity(intentAboutApp);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("О приложении");
+                builder.setMessage(R.string.aboutAppText);
+                builder.setCancelable(false);
+                builder.setNegativeButton(
+                        "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }
+                );
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
                 return true;
             case R.id.add_word:
                 Intent intentAddWord = new Intent(this, AddWordActivity.class);
