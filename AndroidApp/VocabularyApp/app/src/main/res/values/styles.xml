@@ -10,7 +10,7 @@
     </style>
     
     <style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/logo_polytech_30x30</item>
+        <item name="android:src">@drawable/logo40x40</item>
     </style>
 
 </resources>
