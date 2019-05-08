@@ -16,9 +16,9 @@
         \tТерентьева Полина\n
         \tШпейло Екатерина
     </string>
-    <string name="about_us_menu">О нас</string>
-    <string name="about_app_menu">О приложении</string>
-    <string name="add_word_menu">Добавить слово</string>
+    <string name="aboutUsMenu">О нас</string>
+    <string name="aboutAppMenu">О приложении</string>
+    <string name="addWordMenu">Добавить слово</string>
     <string name="developersHead">Разработчики:</string>
     <string name="enterWord">Введите слово</string>
     <string name="search">Поиск</string>
@@ -31,6 +31,6 @@
     <string name="enterDescription">Введите описание</string>
     <string name="exit">Выход</string>
     <string name="apply">Применить</string>
-    <string name="teamEnd">Команда студентов первого курса факультета информационных технологий московского политехнического университета</string>
+    <string name="teamEnd">Команда студентов первого курса факультета информационных технологий московского политехнического университета:</string>
     <string name="aboutAppText">Приложение создано для абитуриентов и первокурсников московского политеха с целью ознакомления с терминами и понятиями, используемыми специалистами определённого профиля подготовки</string>
 </resources>
