@@ -9,20 +9,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Iterator;
+import android.view.View;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private class OkHttpHandler extends AsyncTask<String, Void, String> {
+    private class GetNaprav extends AsyncTask<String, Void, String> {
 
         OkHttpClient client = new OkHttpClient();
 
@@ -51,29 +46,19 @@ public class MainActivity extends AppCompatActivity {
             String naprav = s.substring(0, s.indexOf(" "));
             s = s.substring(s.indexOf("{"));
 
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                Iterator<String> keys = jsonObject.keys();
-                JSONArray array = jsonObject.getJSONArray(keys.next());
-
-                Intent intentNaprav = new Intent(
-                        MainActivity.this, NapravActivity.class
-                );
-                // TODO Do
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            Intent intentNaprav = new Intent(
+                    MainActivity.this, NapravActivity.class
+            );
+            intentNaprav.putExtra("naprav", naprav);
+            intentNaprav.putExtra("jArr", s);
+            startActivity(intentNaprav);
         }
     }
-
-    OkHttpHandler okHttpHandler = new OkHttpHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        okHttpHandler.execute("http://116.203.41.4:5000/api/v1.0/terms/09.03.01.01", "09.03.01.01");
 
         // TODO Добавь ввод
         // TODO Добавь поиск
@@ -119,6 +104,38 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        GetNaprav getNaprav = new GetNaprav();
+        switch (v.getId()) {
+            case R.id.textLink1:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/10.05.03", "10.05.03"
+                );
+                break;
+            case R.id.textLink2:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/10.03.01", "10.03.01"
+                );
+                break;
+            case R.id.textLink3:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/09.03.01.01", "09.03.01.01"
+                );
+                break;
+            case R.id.textLink4:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/09.03.01.02", "09.03.01.02"
+                );
+                break;
+            case R.id.textLink5:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/09.03.01.03", "09.03.01.03"
+                );
+                break;
         }
     }
 }
