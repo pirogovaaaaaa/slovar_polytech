@@ -39,6 +39,8 @@ public class NapravActivity extends AppCompatActivity {
                     this, android.R.layout.simple_list_item_1, textArray
             );
             listOpr.setAdapter(adapter);
+
+            // TODO Сделай кликабельно
         } catch (JSONException e) {
             e.printStackTrace();
         }
