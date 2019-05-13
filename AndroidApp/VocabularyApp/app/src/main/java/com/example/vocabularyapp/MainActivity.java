@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -40,7 +42,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            // TODO Создание окна со словами
+
+            ArrayList<String[]> napravList = new ArrayList<>();
+
+            s = s.substring(s.indexOf("[") + 1, s.lastIndexOf("]"));
+            String[] temporaryArrOne = s.split(",");
+            String delimetr = ",|\\[|\\]|\"";
+            for (String line : temporaryArrOne) {
+                String[] temporaryArrTwo = line.split(delimetr);
+                napravList.add(temporaryArrTwo);
+            }
+
+            for (String[] line : napravList) {
+                for (String i : line) {
+                    System.out.println(i);
+                }
+            }
         }
     }
 
@@ -50,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        okHttpHandler.execute("http://116.203.41.4:5000/api/v1.0/terms/09.03.01.01");
 
         // TODO Добавь ввод
         // TODO Добавь поиск
