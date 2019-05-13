@@ -10,12 +10,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private class GetNaprav extends AsyncTask<String, Void, String> {
 
@@ -55,10 +56,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    TextView textOpis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textOpis = findViewById(R.id.textOpis);
 
         // TODO Добавь поиск
     }
@@ -105,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
     public void onClick(View v) {
         GetNaprav getNaprav = new GetNaprav();
         switch (v.getId()) {
@@ -133,6 +137,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getNaprav.execute(
                         "http://116.203.41.4:5000/api/v1.0/terms/09.03.01.03", "09.03.01.03"
                 );
+                break;
+            case R.id.butSearch:
+                // TODO Класс поиска, это не сложно
                 break;
         }
     }
