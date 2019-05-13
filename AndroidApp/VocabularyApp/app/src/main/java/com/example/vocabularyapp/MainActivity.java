@@ -10,7 +10,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,7 +22,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static class OkHttpHandler extends AsyncTask<String, Void, String> {
+    private class OkHttpHandler extends AsyncTask<String, Void, String> {
 
         OkHttpClient client = new OkHttpClient();
 
@@ -31,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 Response response = client.newCall(request).execute();
-                return response.body() != null ? response.body().string() : null;
+                return params[1] + " " +
+                        (response.body() != null ? response.body().string() : null);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -43,20 +48,20 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            ArrayList<String[]> napravList = new ArrayList<>();
+            String naprav = s.substring(0, s.indexOf(" "));
+            s = s.substring(s.indexOf("{"));
 
-            s = s.substring(s.indexOf("[") + 1, s.lastIndexOf("]"));
-            String[] temporaryArrOne = s.split(",");
-            String delimetr = ",|\\[|\\]|\"";
-            for (String line : temporaryArrOne) {
-                String[] temporaryArrTwo = line.split(delimetr);
-                napravList.add(temporaryArrTwo);
-            }
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                Iterator<String> keys = jsonObject.keys();
+                JSONArray array = jsonObject.getJSONArray(keys.next());
 
-            for (String[] line : napravList) {
-                for (String i : line) {
-                    System.out.println(i);
-                }
+                Intent intentNaprav = new Intent(
+                        MainActivity.this, NapravActivity.class
+                );
+                // TODO Do
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        okHttpHandler.execute("http://116.203.41.4:5000/api/v1.0/terms/09.03.01.01");
+        okHttpHandler.execute("http://116.203.41.4:5000/api/v1.0/terms/09.03.01.01", "09.03.01.01");
 
         // TODO Добавь ввод
         // TODO Добавь поиск
