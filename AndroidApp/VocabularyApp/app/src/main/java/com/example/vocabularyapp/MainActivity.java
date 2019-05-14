@@ -12,11 +12,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AsyncResponse {
+
+    TextView textOpis, textWordSearch;
+
 
     private class GetNaprav extends AsyncTask<String, Void, String> {
 
@@ -56,16 +63,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    TextView textOpis;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         textOpis = findViewById(R.id.textOpis);
+        textWordSearch = findViewById(R.id.textWordSearch);
+    }
 
-        // TODO Добавь поиск
+    @Override
+    public void processFinish(String output) {
+        try {
+            JSONObject jsonObject = new JSONObject(output);
+            JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
+
+            String temporaryStr = jsonArray.getString(0);
+            temporaryStr = temporaryStr.substring(1, temporaryStr.length() - 1);
+            String[] temporaryArray = temporaryStr.split("[,\"]");
+            // TODO НАпиши поиск по индексу, везде ехо херачить будешь
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -139,7 +158,11 @@ public class MainActivity extends AppCompatActivity {
                 );
                 break;
             case R.id.butSearch:
-                // TODO Класс поиска, это не сложно
+                FindWordApi findWordApi = new FindWordApi();
+                findWordApi.delegate = this;
+                findWordApi.execute(
+                        "http://116.203.41.4:5000/api/v1.0/term/" + textWordSearch.getText()
+                );
                 break;
         }
     }
