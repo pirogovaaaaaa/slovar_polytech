@@ -10,14 +10,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NapravActivity extends AppCompatActivity {
+public class NapravListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_naprav);
+        setContentView(R.layout.activity_naprav_list);
 
-        ListView listOpr = findViewById(R.id.listOpr);
+        ListView listNaprav = findViewById(R.id.listNaprav);
 
         Intent intent = getIntent();
         setTitle(intent.getStringExtra("naprav"));
@@ -38,7 +38,7 @@ public class NapravActivity extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
                     this, android.R.layout.simple_list_item_1, textArray
             );
-            listOpr.setAdapter(adapter);
+            listNaprav.setAdapter(adapter);
 
             // TODO Сделай кликабельно
         } catch (JSONException e) {

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             s = s.substring(s.indexOf("{"));
 
             Intent intentNaprav = new Intent(
-                    MainActivity.this, NapravActivity.class
+                    MainActivity.this, NapravListActivity.class
             );
             intentNaprav.putExtra("naprav", naprav);
             intentNaprav.putExtra("jArr", s);
@@ -164,6 +164,21 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             case R.id.textLink5:
                 getNaprav.execute(
                         "http://116.203.41.4:5000/api/v1.0/terms/09.03.03", "09.03.03"
+                );
+                break;
+            case R.id.textLink6:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/01.03.02", "01.03.02"
+                );
+                break;
+            case R.id.textLink7:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/27.03.04.02", "27.03.04.02"
+                );
+                break;
+            case R.id.textLink8:
+                getNaprav.execute(
+                        "http://116.203.41.4:5000/api/v1.0/terms/38.03.05.01", "38.03.05.01"
                 );
                 break;
             case R.id.butSearch:
