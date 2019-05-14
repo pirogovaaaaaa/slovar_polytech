@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -28,10 +30,14 @@ public class MainActivity extends AppCompatActivity implements FindWordInterface
 
     private class GetNaprav extends AsyncTask<String, Void, String> {
 
-        OkHttpClient client = new OkHttpClient();
-
         @Override
         protected String doInBackground(String...params) {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3, TimeUnit.SECONDS)
+                    .writeTimeout(3, TimeUnit.SECONDS)
+                    .readTimeout(3, TimeUnit.SECONDS)
+                    .build();
+
             Request.Builder builder = new Request.Builder();
             builder.url(params[0]);
             Request request = builder.build();
@@ -73,7 +79,12 @@ public class MainActivity extends AppCompatActivity implements FindWordInterface
     }
 
     @Override
-    public void processFinish(String output) {
+    public void wordFind(String output) {
+        if (output == null) {
+            textOpis.setText("Неполадки с сетью");
+            return;
+        }
+
         try {
             JSONObject jsonObject = new JSONObject(output);
             JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
@@ -85,19 +96,24 @@ public class MainActivity extends AppCompatActivity implements FindWordInterface
 
             String temporaryStr = jsonArray.getString(0);
             temporaryStr = temporaryStr.substring(1, temporaryStr.length() - 1);
-            String[] temporaryArray = temporaryStr.split("[,\"]");
+            String[] temporaryArray = temporaryStr.split(",");
 
             FindOprOfWord findOprOfWord = new FindOprOfWord();
             findOprOfWord.delegate = this;
             findOprOfWord.execute(
-                    "http://116.203.41.4:5000/api/v1.0/opreds/" + temporaryArray[3]);
+                    "http://116.203.41.4:5000/api/v1.0/opreds/" + temporaryArray[1]);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void wordFind(String output) {
+    public void oprFind(String output) {
+        if (output == null) {
+            textOpis.setText("Неполадки с сетью");
+            return;
+        }
+
         try {
             JSONObject jsonObject = new JSONObject(output);
             JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
@@ -207,11 +223,12 @@ public class MainActivity extends AppCompatActivity implements FindWordInterface
                 );
                 break;
             case R.id.butSearch:
-                FindWordApi findWordApi = new FindWordApi();
-                findWordApi.delegate = this;
-                findWordApi.execute(
+                FindWordId findWordId = new FindWordId();
+                findWordId.delegate = this;
+                findWordId.execute(
                         "http://116.203.41.4:5000/api/v1.0/term/" + textWordSearch.getText()
                 );
+                textWordSearch.setText("");
                 break;
         }
     }

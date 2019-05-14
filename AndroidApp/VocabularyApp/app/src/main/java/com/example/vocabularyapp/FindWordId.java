@@ -2,17 +2,24 @@ package com.example.vocabularyapp;
 
 import android.os.AsyncTask;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class FindWordApi extends AsyncTask<String, Void, String> {
+public class FindWordId extends AsyncTask<String, Void, String> {
 
-    private OkHttpClient client = new OkHttpClient();
     FindWordInterface delegate = null;
 
     @Override
     protected String doInBackground(String... strings) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(3, TimeUnit.SECONDS)
+                .writeTimeout(3, TimeUnit.SECONDS)
+                .readTimeout(3, TimeUnit.SECONDS)
+                .build();
+
         Request.Builder builder = new Request.Builder();
         builder.url(strings[0]);
         Request request = builder.build();
@@ -31,6 +38,6 @@ public class FindWordApi extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        delegate.processFinish(s);
+        delegate.wordFind(s);
     }
 }

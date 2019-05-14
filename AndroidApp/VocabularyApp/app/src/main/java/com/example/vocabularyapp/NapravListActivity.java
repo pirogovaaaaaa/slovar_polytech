@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,16 +37,14 @@ public class NapravListActivity extends AppCompatActivity implements FindWordInt
             for (int i = 0; i < array.length(); ++i) {
                 String temporaryStr = array.getString(i);
                 temporaryStr = temporaryStr.substring(1, temporaryStr.length() - 1);
-                String[] temporaryArray = temporaryStr.split("[,\"]");
-                textArray[i] = temporaryArray[1];
+                String[] temporaryArray = temporaryStr.split(",");
+                textArray[i] = temporaryArray[0].substring(1, temporaryArray[0].length() - 1);
             }
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
                     this, android.R.layout.simple_list_item_1, textArray
             );
             listNaprav.setAdapter(adapter);
-
-            // TODO Сделай кликабельно
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -53,9 +52,18 @@ public class NapravListActivity extends AppCompatActivity implements FindWordInt
         listNaprav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                FindWordApi findWordApi = new FindWordApi();
-                findWordApi.delegate = NapravListActivity.this;
-                findWordApi.execute(
+                if (!IsOnline.isOnline()) {
+                    Toast toast = Toast.makeText(
+                            getApplicationContext(), "Нет подключения к интернету!",
+                            Toast.LENGTH_SHORT
+                    );
+                    toast.show();
+
+                    return;
+                }
+                FindWordId findWordId = new FindWordId();
+                findWordId.delegate = NapravListActivity.this;
+                findWordId.execute(
                         "http://116.203.41.4:5000/api/v1.0/term/" + ((TextView) view).getText()
                 );
 
@@ -64,7 +72,7 @@ public class NapravListActivity extends AppCompatActivity implements FindWordInt
     }
 
     @Override
-    public void wordFind(String output) {
+    public void oprFind(String output) {
         try {
             JSONObject jsonObject = new JSONObject(output);
             JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
@@ -94,7 +102,7 @@ public class NapravListActivity extends AppCompatActivity implements FindWordInt
     }
 
     @Override
-    public void processFinish(String output) {
+    public void wordFind(String output) {
         try {
             JSONObject jsonObject = new JSONObject(output);
             JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
