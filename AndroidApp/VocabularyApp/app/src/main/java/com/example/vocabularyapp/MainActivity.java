@@ -21,7 +21,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements AsyncResponse {
+public class MainActivity extends AppCompatActivity implements FindWordInterface, FindOprInterface {
 
     TextView textOpis, textWordSearch;
 
@@ -78,10 +78,35 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             JSONObject jsonObject = new JSONObject(output);
             JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
 
+            if (jsonArray.length() == 0) {
+                textOpis.setText("В словаре нет такого слова(");
+                return;
+            }
+
             String temporaryStr = jsonArray.getString(0);
             temporaryStr = temporaryStr.substring(1, temporaryStr.length() - 1);
             String[] temporaryArray = temporaryStr.split("[,\"]");
-            // TODO НАпиши поиск по индексу, везде ехо херачить будешь
+
+            FindOprOfWord findOprOfWord = new FindOprOfWord();
+            findOprOfWord.delegate = this;
+            findOprOfWord.execute(
+                    "http://116.203.41.4:5000/api/v1.0/opreds/" + temporaryArray[3]);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void wordFind(String output) {
+        try {
+            JSONObject jsonObject = new JSONObject(output);
+            JSONArray jsonArray = jsonObject.getJSONArray(jsonObject.keys().next());
+
+            String temporaryStr = jsonArray.getString(0);
+            temporaryStr = temporaryStr.substring(temporaryStr.indexOf(",") + 2,
+                    temporaryStr.length() - 2);
+
+            textOpis.setText(temporaryStr);
         } catch (JSONException e) {
             e.printStackTrace();
         }

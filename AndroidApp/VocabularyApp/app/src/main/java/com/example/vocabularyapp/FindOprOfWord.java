@@ -2,14 +2,16 @@ package com.example.vocabularyapp;
 
 import android.os.AsyncTask;
 
+import java.io.IOException;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class FindWordApi extends AsyncTask<String, Void, String> {
+public class FindOprOfWord extends AsyncTask<String, Void, String> {
 
     private OkHttpClient client = new OkHttpClient();
-    FindWordInterface delegate = null;
+    FindOprInterface delegate = null;
 
     @Override
     protected String doInBackground(String... strings) {
@@ -20,7 +22,7 @@ public class FindWordApi extends AsyncTask<String, Void, String> {
         try {
             Response response = client.newCall(request).execute();
             return response.body() != null ? response.body().string() : null;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -31,6 +33,6 @@ public class FindWordApi extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        delegate.processFinish(s);
+        delegate.wordFind(s);
     }
 }

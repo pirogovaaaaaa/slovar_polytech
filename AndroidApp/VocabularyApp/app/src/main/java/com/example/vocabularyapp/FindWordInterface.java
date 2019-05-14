@@ -1,5 +1,5 @@
 package com.example.vocabularyapp;
 
-public interface AsyncResponse {
+public interface FindWordInterface {
     void processFinish(String output);
 }
