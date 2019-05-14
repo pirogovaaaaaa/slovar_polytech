@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
         @Override
         protected String doInBackground(String...params) {
-
             Request.Builder builder = new Request.Builder();
             builder.url(params[0]);
             Request request = builder.build();
@@ -130,6 +130,15 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     public void onClick(View v) {
+        if (!IsOnline.isOnline()) {
+            Toast toast = Toast.makeText(
+                    getApplicationContext(), "Нет подключения к интернету!",
+                    Toast.LENGTH_SHORT
+            );
+            toast.show();
+
+            return;
+        }
         GetNaprav getNaprav = new GetNaprav();
         switch (v.getId()) {
             case R.id.textLink1:
