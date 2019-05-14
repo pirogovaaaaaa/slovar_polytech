@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 break;
             case R.id.textLink5:
                 getNaprav.execute(
-                        "http://116.203.41.4:5000/api/v1.0/terms/09.03.01.03", "09.03.01.03"
+                        "http://116.203.41.4:5000/api/v1.0/terms/09.03.03", "09.03.03"
                 );
                 break;
             case R.id.butSearch:

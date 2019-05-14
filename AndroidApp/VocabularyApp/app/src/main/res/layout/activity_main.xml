@@ -35,6 +35,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textOpis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textWordSearch" />
+
+    <TextView
         android:id="@+id/textDirection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,7 +144,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="@string/way_09_03_01_03"
+        android:text="@string/way_09_03_03"
         android:textColor="#0000FF"
         android:clickable="true"
         android:onClick="onClick"
@@ -142,16 +155,57 @@
         android:focusable="true" />
 
     <TextView
-        android:id="@+id/textOpis"
-        android:layout_width="wrap_content"
+        android:id="@+id/textLink6"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:text="@string/way_01_03_02"
+        android:textColor="#0000FF"
+        android:clickable="true"
+        android:onClick="onClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textWordSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/textLink5"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/textLink7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/way_27_03_04_02"
+        android:textColor="#0000FF"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLink6"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/textLink8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/way_38_03_05_01"
+        android:textColor="#0000FF"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLink7"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>
