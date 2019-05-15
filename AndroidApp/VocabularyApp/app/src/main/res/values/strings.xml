@@ -31,7 +31,7 @@
     <string name="way_01_03_02"><u>01.03.02 Прикладная математика и информатика</u></string>
     <string name="way_27_03_04_02"><u>27.03.04.02 Управление в технических системах (киберфизические системы)</u></string>
     <string name="way_38_03_05_01"><u>38.03.05.01 Бизнес-информатика (ИТ-менеджмент)</u></string>
-    <string name="enterDescription">Введите описание</string>
+    <string name="enterDescription">Введите определение</string>
     <string name="exit">Выход</string>
     <string name="apply">Применить</string>
     <string name="teamEnd">Команда студентов первого курса факультета информационных технологий московского политехнического университета:</string>

@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements FindWordInterface
         @Override
         protected String doInBackground(String...params) {
             OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.SECONDS)
-                    .writeTimeout(3, TimeUnit.SECONDS)
-                    .readTimeout(3, TimeUnit.SECONDS)
+                    .connectTimeout(1, TimeUnit.SECONDS)
+                    .writeTimeout(1, TimeUnit.SECONDS)
+                    .readTimeout(1, TimeUnit.SECONDS)
                     .build();
 
             Request.Builder builder = new Request.Builder();
