@@ -14,11 +14,14 @@
         <activity android:name=".NapravListActivity"></activity>
         <activity
             android:name=".AddWordActivity"
-            android:label="Add word" />
+            android:label="Add word"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AboutUsActivity"
-            android:label="About us" />
-        <activity android:name=".MainActivity">
+            android:label="About us"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
